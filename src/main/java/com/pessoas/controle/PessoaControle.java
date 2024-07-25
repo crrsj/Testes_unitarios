@@ -39,13 +39,13 @@ public class PessoaControle {
 		
 	}
 	
-	@GetMapping("id")
+	@GetMapping("{id}")
 	public ResponseEntity<PessoaDto>buscarPorId(@PathVariable Long id){
 		var buscaId = pessoaServico.buscarPorId(id);
 		return ResponseEntity.ok().body(new PessoaDto(buscaId));
 	}
 	
-	@PutMapping
+	@PutMapping("{id}")
 	public ResponseEntity<PessoaDto>atualizarCadastro(@RequestBody PessoaDto pessoa,@PathVariable Long id){
 		var atualize = pessoaServico.atualizarCadastro(pessoa, id);
 		return ResponseEntity.ok().body(new PessoaDto(atualize));
