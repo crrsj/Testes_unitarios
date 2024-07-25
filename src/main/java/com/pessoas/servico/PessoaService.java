@@ -1,6 +1,7 @@
 package com.pessoas.servico;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -23,4 +24,8 @@ public class PessoaService {
 		return pessoaRepositorio.findAll();
 	}
 
+	public Pessoa buscarPorId(Long id) {
+		Optional<Pessoa>buscar = pessoaRepositorio.findById(id);
+		return buscar.get();
+	}
 }
