@@ -1,5 +1,7 @@
 package com.pessoas.servico;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.pessoas.dto.PessoaDto;
@@ -15,6 +17,10 @@ public class PessoaService {
 		var cadastrar = new Pessoa(pessoa);
 		return pessoaRepositorio.save(cadastrar);
 		
+	}
+	
+	public List<Pessoa>ListarPessoas(){
+		return pessoaRepositorio.findAll();
 	}
 
 }
