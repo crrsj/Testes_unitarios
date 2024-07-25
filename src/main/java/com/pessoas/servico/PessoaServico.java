@@ -11,7 +11,7 @@ import com.pessoas.entidade.Pessoa;
 import com.pessoas.repositorio.PessoaRepositorio;
 
 @Service
-public class PessoaService {
+public class PessoaServico {
 	@Autowired
 	private PessoaRepositorio pessoaRepositorio;
 	
