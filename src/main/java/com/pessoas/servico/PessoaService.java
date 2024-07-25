@@ -28,4 +28,10 @@ public class PessoaService {
 		Optional<Pessoa>buscar = pessoaRepositorio.findById(id);
 		return buscar.get();
 	}
+	
+	public Pessoa atualizarCadastro(PessoaDto pessoa,Long id) {
+		var atualizar = new Pessoa(pessoa);
+		atualizar.setId(id);
+		return pessoaRepositorio.save(atualizar);
+	}
 }
