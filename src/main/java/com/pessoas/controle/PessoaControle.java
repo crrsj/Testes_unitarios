@@ -44,5 +44,9 @@ public class PessoaControle {
 		return ResponseEntity.ok().body(new PessoaDto(buscaId));
 	}
 	
-	
+	@PutMapping
+	public ResponseEntity<PessoaDto>atualizarCadastro(@RequestBody PessoaDto pessoa,@PathVariable Long id){
+		var atualize = pessoaServico.atualizarCadastro(pessoa, id);
+		return ResponseEntity.ok().body(new PessoaDto(atualize));
+	} 
 }
