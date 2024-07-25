@@ -1,5 +1,9 @@
 package com.pessoas.repositorio;
 
-public class PessoaRepositorio {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.pessoas.entidade.Pessoa;
+
+public interface PessoaRepositorio extends JpaRepository<Pessoa, Long> {
 
 }

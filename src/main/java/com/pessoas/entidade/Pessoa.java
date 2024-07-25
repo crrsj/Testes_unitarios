@@ -1,5 +1,7 @@
 package com.pessoas.entidade;
 
+import com.pessoas.dto.PessoaDto;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,12 +17,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Pessoa {
-    @Id
+   
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
     private String nome;
     private String cpf;
     private String telefone;
     private String email;
+    
+    public Pessoa(PessoaDto pessoa) {
+		this.id = pessoa.id();
+		this.nome = pessoa.nome();
+		this.cpf = pessoa.cpf();
+		this.telefone = pessoa.telefone();
+		this.email = pessoa.email();
+		
+	}
 	
 }
