@@ -34,4 +34,8 @@ public class PessoaService {
 		atualizar.setId(id);
 		return pessoaRepositorio.save(atualizar);
 	}
+	
+	public void excluir(Long id) {
+		pessoaRepositorio.deleteById(id);
+	}
 }
