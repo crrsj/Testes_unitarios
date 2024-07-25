@@ -51,9 +51,9 @@ public class PessoaControle {
 		return ResponseEntity.ok().body(new PessoaDto(atualize));
 	} 
 	
-	@DeleteMapping
-	public ResponseEntity<Void>excluir(){
-		pessoaServico.excluir(null);
+	@DeleteMapping("{id}")
+	public ResponseEntity<Void>excluir(@PathVariable Long id){
+		pessoaServico.excluir(id);
 		return ResponseEntity.noContent().build();
 	}
 }
