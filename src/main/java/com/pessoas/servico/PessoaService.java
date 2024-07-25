@@ -3,6 +3,7 @@ package com.pessoas.servico;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pessoas.dto.PessoaDto;
@@ -11,7 +12,7 @@ import com.pessoas.repositorio.PessoaRepositorio;
 
 @Service
 public class PessoaService {
-	
+	@Autowired
 	private PessoaRepositorio pessoaRepositorio;
 	
 	public Pessoa cadastrarPessoa(PessoaDto pessoa) {
