@@ -2,6 +2,8 @@ package com.pessoas.servico.teste;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
@@ -56,6 +58,14 @@ public class PessoasServicoTeste {
 		assertEquals(EMAIL, resposta.getEmail());
 	}
 	
+	@Test
+	@DisplayName("Falha ao cadastrar pessoa")
+	void falhaAoCadastrar() {
+		doThrow(new RuntimeException()).when(pessoaRepositorio).save(pessoa);
+		assertThrows(RuntimeException.class, ()-> pessoaServico.cadastrarPessoa(pessoaDto));
+	}
+	
+		
 	
 	
 	
