@@ -7,6 +7,7 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -23,8 +24,8 @@ import com.pessoas.entidade.Pessoa;
 import com.pessoas.repositorio.PessoaRepositorio;
 import com.pessoas.servico.PessoaServico;
 
-@SpringBootTest
-public class PessoasServicoTeste {
+    @SpringBootTest
+    class PessoasServicoTeste {
 	
 	private static final String EMAIL = "carlos@gmail.com";
 	private static final String TELEFONE = "1234";
@@ -95,6 +96,20 @@ public class PessoasServicoTeste {
 		}
 	}
 		
+	@Test
+	@DisplayName("Quando buscar Pessoas retorne sucesso")
+	void quandoBuscarPessoasRetorneSucesso() {
+		when(pessoaRepositorio.findAll()).thenReturn(List.of(pessoa));
+		List<Pessoa>resposta = pessoaServico.ListarPessoas();
+		assertNotNull(resposta);
+		 assertEquals(ID, resposta.get(0).getId());
+		 assertEquals(NOME, resposta.get(0).getNome());
+		 assertEquals(TELEFONE, resposta.get(0).getTelefone());
+		 assertEquals(CPF, resposta.get(0).getCpf());
+		 assertEquals(EMAIL, resposta.get(0).getEmail());
+	}
+	
+	
 	
 	private void iniciarClasses() {
 		
