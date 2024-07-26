@@ -4,7 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
@@ -108,8 +111,14 @@ import com.pessoas.servico.PessoaServico;
 		 assertEquals(CPF, resposta.get(0).getCpf());
 		 assertEquals(EMAIL, resposta.get(0).getEmail());
 	}
-	
-	
+	@Test
+	@DisplayName("Sucesso ao excluir")
+	void sucessoAoExcluir() {		
+		doNothing().when(pessoaRepositorio).deleteById(anyLong());
+		pessoaServico.excluir(ID);
+		verify(pessoaRepositorio,times(1)).deleteById(ID);
+		
+	}
 	
 	private void iniciarClasses() {
 		
