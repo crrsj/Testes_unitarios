@@ -3,9 +3,11 @@ package com.pessoas.servico.teste;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -65,9 +67,34 @@ public class PessoasServicoTeste {
 		assertThrows(RuntimeException.class, ()-> pessoaServico.cadastrarPessoa(pessoaDto));
 	}
 	
+	@Test
+	@DisplayName("Quando buscar por id retorne sucesso")
+	void quandoBuscarPorIdRetorneSucesso() {
+		when(pessoaRepositorio.findById(anyLong())).thenReturn(optionalPessoa);
+		var resposta = pessoaServico.buscarPorId(ID);
+		assertNotNull(resposta);
+		assertEquals(Pessoa.class, resposta.getClass());
+		assertEquals(ID, resposta.getId());
+		assertEquals(NOME, resposta.getNome());
+		assertEquals(CPF, resposta.getCpf());
+		assertEquals(TELEFONE, resposta.getTelefone());
+		assertEquals(EMAIL, resposta.getEmail());
+	}
+	
+	@Test
+	@DisplayName("Falha ao buscar por id")
+	void falhaAoBuscarPorId() {
 		
-	
-	
+		when(pessoaRepositorio.findById(anyLong())).thenThrow(new NoSuchElementException("ID não encontrado !"));
+		
+		try {
+			pessoaServico.buscarPorId(ID);
+		} catch (Exception e) {
+			assertEquals(NoSuchElementException.class, e.getClass());
+			assertEquals("ID não encontrado !", e.getMessage());
+		}
+	}
+		
 	
 	private void iniciarClasses() {
 		
