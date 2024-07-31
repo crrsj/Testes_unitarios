@@ -53,7 +53,7 @@ public class PessoaControle {
 	
 	@DeleteMapping("{id}")
 	public ResponseEntity<Void>excluir(@PathVariable Long id){
-		pessoaServico.excluir(id);
+		pessoaServico.excluir(id); 
 		return ResponseEntity.noContent().build();
 	}
 }

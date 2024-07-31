@@ -104,7 +104,7 @@ import com.pessoas.servico.PessoaServico;
 	void quandoBuscarPessoasRetorneSucesso() {
 		when(pessoaRepositorio.findAll()).thenReturn(List.of(pessoa));
 		List<Pessoa>resposta = pessoaServico.ListarPessoas();
-		assertNotNull(resposta);
+		 assertNotNull(resposta);
 		 assertEquals(ID, resposta.get(0).getId());
 		 assertEquals(NOME, resposta.get(0).getNome());
 		 assertEquals(TELEFONE, resposta.get(0).getTelefone());
